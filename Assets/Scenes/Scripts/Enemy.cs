@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamagable<float>
+public class Enemy : MonoBehaviour, IDamagable
 {
-    public int health 
+    public float health 
     { 
         get; 
         set; 

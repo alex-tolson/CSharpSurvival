@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamagable<int>
+public class Player : MonoBehaviour, IDamagable
 {
-    public int health
+    public float health
     {
         get;
         set;
     }
 
-    public void Damage(int damageAmount)
+    public void Damage(float damageAmount)
     {
         health -= damageAmount;
 
