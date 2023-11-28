@@ -15,4 +15,9 @@ public class Cube : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.color = Color.red;
     }
+
+    private void OnDisable()
+    {
+        Main2.onClick -= TurnRed;
+    }
 }
