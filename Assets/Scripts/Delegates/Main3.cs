@@ -9,13 +9,9 @@ public class Main3 : MonoBehaviour
 
     void Start()
     {
-        CharacterLength = GetCharacters;
+        CharacterLength = (phrase) => name.Length;
+
         int count = CharacterLength("CountDracula");
         Debug.Log("Character Count: " + count);
-    }
-
-    int GetCharacters(string phrase)
-    {
-        return phrase.Length;
     }
 }
