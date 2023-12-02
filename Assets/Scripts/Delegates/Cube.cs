@@ -1,23 +1,74 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
+    public float speed = 5.0f;
+    private MeshRenderer _render;
+    float h;
+    float v;
+
     // Start is called before the first frame update
     void Start()
     {
-        Main2.onClick += TurnRed;
+        _render = GetComponent<MeshRenderer>();
+
     }
-
-
-    public void TurnRed()
+    private void OnEnable()
     {
-        GetComponent<MeshRenderer>().material.color = Color.red;
+        CallbackAction.onEndReached += FinishedWave;
     }
-
     private void OnDisable()
     {
-        Main2.onClick -= TurnRed;
+        CallbackAction.onEndReached -= FinishedWave;
+    }
+
+    private void Update()
+    {
+        MoveCubes();
+    } 
+
+    private void MoveCubes()
+    {
+         h = Input.GetAxis("Horizontal");
+         v = Input.GetAxis("Vertical");
+
+        Vector3 direction = new Vector3(h, 0, v);
+        Vector3 velocity = direction * speed;
+
+        transform.Translate(velocity * Time.deltaTime);
+    }
+
+    public void FinishedWave(Cube instance)
+    {
+        if (this==instance)
+        {
+            Debug.Log("I caused this trouble..." + transform.name);
+            return;
+        }
+
+        StartCoroutine(ColorChange (() =>
+        { 
+            _render.material.color = Color.black;
+
+        }));
+
+    }
+
+    IEnumerator ColorChange(Action onComplete = null)
+    {
+
+        Color newColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+        _render.material.color = newColor;
+        Debug.Log("Changing to random color");
+        yield return new WaitForSeconds(3.0f);
+
+        if (onComplete != null)
+        {
+            onComplete();
+        }
+
+
     }
 }
