@@ -8,8 +8,7 @@ public class LinqExample : MonoBehaviour
 
     void Start()
     {
-        var doesNameMatch = names.Any(name => name == "pete");
-
+        var doesNameMatch = names.Contains("jesse");
         Debug.Log("Name Found: " + doesNameMatch);
     }
 
