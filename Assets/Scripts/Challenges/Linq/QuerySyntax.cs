@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class QuerySyntax : MonoBehaviour
 {
@@ -10,26 +8,29 @@ public class QuerySyntax : MonoBehaviour
 
     void Start()
     {
-        //Define the query expression.
-        IEnumerable<int> gradeQuery =
-            from grade in grades // Each element in the grades array
-            where grade > 80     //Filter the values that are over 80
-            select grade;        //select the element value
+        //Method Syntax:::
 
-        //Execute:: the query //
+        var gradeQuery = grades.Where(grade => grade > 80);
 
-        foreach (int i in gradeQuery)
+        foreach (var grade in gradeQuery)
         {
-            Debug.Log(i);  //log to console query result
+            Debug.Log("Grade: " + grade);
         }
     }
 }
 
-        ////Method Syntax:::
-        //foreach(var grade in gradeQuery)
-        //{
-        //    Debug.Log("Grade: " + grade);
-        //}
-    //}
 
 //}
+////Define the query expression.
+//IEnumerable<int> gradeQuery =
+//    from grade in grades // Each element in the grades array
+//    where grade > 80     //Filter the values that are over 80
+//    select grade;        //select the element value
+
+////Execute:: the query //
+
+//foreach (int i in gradeQuery)
+//{
+//    Debug.Log(i);  //log to console query result
+//}
+////}
