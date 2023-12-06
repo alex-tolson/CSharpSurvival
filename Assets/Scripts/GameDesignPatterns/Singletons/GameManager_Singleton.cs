@@ -2,31 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager_Singleton : MonoBehaviour
+public class GameManager_Singleton :Monosingleton<GameManager_Singleton>
 {
-    private static GameManager_Singleton _instance;
-
-    public static GameManager_Singleton Instance
+    public override void Init()
     {
-        get
+        base.Init();
         {
-            if (_instance == null)
-            {
-                Debug.LogError("GameManager_Singleton is null");
-            }
-
-            return _instance;
+            DisplayInfoMethod();
         }
     }
-
-    private void Awake()
-    {
-        _instance = this;
-
-    }
-
     public void DisplayInfoMethod()
     {
-        Debug.Log("Displaying all the info");
+        Debug.Log("Initializing and Displaying all the info");
     }
 }
