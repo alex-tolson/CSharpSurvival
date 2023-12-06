@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player_delegates : MonoBehaviour
 {
     //public delegate void OnDamageReceived(int currentHealth);
     //public static event OnDamageReceived onDamage;

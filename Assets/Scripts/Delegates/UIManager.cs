@@ -4,7 +4,7 @@ public class UIManager : MonoBehaviour
 {
     public void OnEnable()
     {
-        Player.onDamageReceived += UpdateHealth;
+        Player_delegates.onDamageReceived += UpdateHealth;
     }
 
     public void UpdateHealth(int health)
