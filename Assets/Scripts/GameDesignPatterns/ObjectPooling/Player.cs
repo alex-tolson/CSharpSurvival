@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         { randomPlace = new Vector3(Random.Range(-9f, 9f), Random.Range(-6f, 6f), 0f);
+
             GameObject bullet = PoolManager.Instance.RequestBullet();
             bullet.transform.position = Vector3.zero;
 

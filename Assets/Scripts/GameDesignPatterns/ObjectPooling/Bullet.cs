@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
- 
-    void Start()
-    {
 
-        
+    private void OnEnable()
+    {
+        Invoke("Hide", 1f);
+    }
+
+
+    void Hide()
+    {
+        this.gameObject.SetActive(false);
     }
 }

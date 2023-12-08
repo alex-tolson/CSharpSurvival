@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30035a12a8570aa4eabb29614d71dcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 2255002436720541849, guid: 10c60ba74fc84d3409444bdd3b111cce, type: 3}
+  _bulletPrefab: {fileID: 9037997476830902271, guid: 10c60ba74fc84d3409444bdd3b111cce, type: 3}
   _bulletContainer: {fileID: 1540997602}
   _bulletsEmpty: 0
   _pooledBullets: []
