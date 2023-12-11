@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class CommandManager : MonoBehaviour
 {
@@ -29,24 +29,63 @@ public class CommandManager : MonoBehaviour
 
     public void PlayClicks()
     {
+        StartCoroutine(WaitPlayCo());
+    }
+
+    IEnumerator WaitPlayCo()
+    {
         foreach (var command in _commandBuffer)
         {
-            Invoke("command.Execute", 1);
+            command.Execute();
+            yield return new WaitForSeconds(1f);
         }
     }
 
     public void Rewind()
     {
-        var reverseCommandbuffer = _commandBuffer.Reverse<ICommand>();
+        var reverseCommandBuffer = _commandBuffer.Reverse<ICommand>();
+        StartCoroutine(WaitRewindCo(reverseCommandBuffer));
+
     }
+    IEnumerator WaitRewindCo(IEnumerable reverseBuffer)
+    {
+        foreach (ICommand command in reverseBuffer)
+        {
+            command.Execute();
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    //    foreach (var command in Enumerable.Reverse(_commandBuffer))
+    //    {
+    //        command.Undo();
+    //        yield return new WaitForSeconds(1);
+    //    }
+    //}
+
+
 
     public void DoneClicking()
     {
-
+        var cubes = GameObject.FindGameObjectsWithTag("Cube");
+        foreach (var cube in cubes)
+        { 
+            cube.GetComponent<MeshRenderer>().material.color = Color.white;
+        }
     }
+
     public void Reset()
     {
         _commandBuffer.Clear();
+        var cubes = GameObject.FindGameObjectsWithTag("Cube");
+        foreach (var cube in cubes)
+        {
+            cube.GetComponent<MeshRenderer>().material.color = Color.white;
+        }      
+    }
+
+    private void Awake()
+    {
+        _instance = this;
     }
 
     //create a method to "add" commands to the command buffer
@@ -62,12 +101,4 @@ public class CommandManager : MonoBehaviour
     //done = finished with changing colors. turn them all white.
 
     //reset - clear the command buffer. -done
-
-
-
-
-    private void Awake()
-    {
-        _instance = this;
-    }
 }

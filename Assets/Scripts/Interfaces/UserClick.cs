@@ -1,20 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UserClick : MonoBehaviour
 {
-    CommandManager _commandManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _commandManager = GameObject.Find("CommandManager").GetComponent<CommandManager>();
-        if(_commandManager == null)
-        {
-            Debug.LogError("UserClick::CommandManager is null");
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,7 +19,7 @@ public class UserClick : MonoBehaviour
                         new Color(Random.value, Random.value, Random.value));
 
                     click.Execute();
-                   _commandManager.AddClick(click);
+                    CommandManager.Instance.AddClick(click);
                 }
             }
         }    
